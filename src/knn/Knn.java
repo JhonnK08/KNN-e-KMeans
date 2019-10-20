@@ -17,11 +17,11 @@ public class Knn {
      * @param args the command line arguments
      */
     //Declaração dos 3
+    private Float distanciaDoisPontos(float[] Elementos1, float[] Elementos2) {
     int XCoordenada = 0;
     int YCoordenada = 1;
     int ZCoordenada = 2;
-    private Float distanciaDoisPontos(float[] Elementos1, float[] Elementos2) {
-    int x1 =  Math.round(Elementos1[XCoordenada]);
+        int x1 =  Math.round(Elementos1[XCoordenada]);
     int y1 =  Math.round(Elementos1[YCoordenada]);
     int z1 =  Math.round(Elementos1[ZCoordenada]);
     int x2 =  Math.round(Elementos2[XCoordenada]);
