@@ -1,5 +1,6 @@
 package kmeans;
 
+import java.util.Random;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 
@@ -23,25 +24,24 @@ public class KMeans {
         //Solicitando e formatando dados
         dados = JOptionPane.showInputDialog("Informe os dados separados em vírgula: ");
         System.out.println("Dados = " + dados);
-        String rdados = dados.replace(",", "");
+        String rdados = dados.replace(",", "").trim();
         System.out.println(rdados);
         
         int ndados[] = new int[rdados.length()];
         
         for(int i = 0;i < rdados.length(); i++){
             char c = rdados.charAt(i);
-            Integer.parseInt(String.valueOf(c));
+            ndados[i] = Integer.parseInt(String.valueOf(c));
         }
-        System.out.println(ndados.toString());
-        int ultimo=         ndados[rdados.length()];
+        //System.out.println(ndados.toString());
+        int ultimo=ndados.length;
         System.out.println(ultimo);
 
 
-        
+         
         //Criacao da matriz de distancias de acordo com K
         
         //Criar pontos randomicos dentro da base de dados
-        
         //Comparar todas as distancias
         
         //Atribuir ao cluster mais proximo
@@ -69,11 +69,30 @@ public class KMeans {
         this.matriz = matriz;
     }
     
+    private float[] iniciaCentroide(float[] dados, int k) { 
+            Random random = new Random();
+            float [] centroides = null;
+            for (int i = 0; i < k; i++) {
+                centroides[i] = random.nextFloat();
+            }
+            return centroides;
+    }
     
-    public float[][][] populaMatriz(String dados, int k){
-        float [][][] matriz = null;
+    
+    private float[][] populaMatriz(int[] dados, int k){
+        float [][] matriz = new float [dados.length][k];
+        
+       
+        
         
         
         return matriz;
+    }
+    
+    private float calculaDistancia (){
+        float seila = 0;
+        
+        
+        return seila;
     }
 }
