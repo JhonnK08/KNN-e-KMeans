@@ -48,7 +48,7 @@ public class KMeans {
         
         //Fazer a media de distancia entre os pontos
         
-        //Realizar o calculo novamente  utilizando a media ddos dados como pontos
+        //Realizar o calculo novamente  utilizando a media dos dados como pontos
 
     }
 
