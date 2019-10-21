@@ -1,13 +1,17 @@
 package kmeans;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 
 public class KMeans {
     private int k;
-    private float matriz;
+    private double matriz;
     private String dados;
+    private double centroides;
     public KMeans() {
     }
     
@@ -37,11 +41,11 @@ public class KMeans {
         int ultimo=ndados.length;
         System.out.println(ultimo);
 
-
-         
         //Criacao da matriz de distancias de acordo com K
         
         //Criar pontos randomicos dentro da base de dados
+        
+        
         //Comparar todas as distancias
         
         //Atribuir ao cluster mais proximo
@@ -61,7 +65,7 @@ public class KMeans {
         this.k = k;
     }
 
-    public float getMatriz() {
+    public double getMatriz() {
         return matriz;
     }
 
@@ -69,11 +73,11 @@ public class KMeans {
         this.matriz = matriz;
     }
     
-    private float[] iniciaCentroide(float[] dados, int k) { 
+    private double[] iniciaCentroide(double[] dados, int k) { 
             Random random = new Random();
-            float [] centroides = null;
+            double [] centroides = null;
             for (int i = 0; i < k; i++) {
-                centroides[i] = random.nextFloat();
+                centroides[i] = random.nextDouble();
             }
             return centroides;
     }
@@ -89,9 +93,16 @@ public class KMeans {
         return matriz;
     }
     
-    private float calculaDistancia (){
+
+    
+    private double calculaDistancia (){
         float seila = 0;
+        double resp = 0;
         
+        for(int j = 0; j < dimensao; j++){
+            resp += Math.pow(Math.abs(p1.getCoordenadas()[j] - p2.getCoordenadas()[j]), 2);            
+        }     
+        return Math.sqrt(resp);
         
         return seila;
     }
