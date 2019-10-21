@@ -2,6 +2,7 @@ package kmeans;
 
 import java.io.File;
 import java.io.IOException;
+import static java.lang.Math.random;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -10,9 +11,12 @@ import javax.swing.JOptionPane;
 
 public class KMeans {
     private int k;
+    private int atributos;
     private ArrayList<Ponto> pontos;
-    private String dados;
-    private double centroides;
+    private ArrayList<Ponto> centroides;
+    //private double centroides;
+    private String quantdados;
+    
     public KMeans() {
     }
     
@@ -46,7 +50,6 @@ public class KMeans {
         
         //Criar pontos randomicos dentro da base de dados
         
-        
         //Comparar todas as distancias
         
         //Atribuir ao cluster mais proximo
@@ -65,22 +68,32 @@ public class KMeans {
     public void setK(int k) {
         this.k = k;
     }
+    
+    
+    public void iniciarCentroides(ArrayList <Ponto> centroide, int k, int atributos) { 
+        Random random = new Random();
+        for(int i = 0; i < k; i++) {
+            Ponto centro = new Ponto();
+            double [] coordenadas = new double[atributos];
 
-    public double getMatriz() {
-        return matriz;
-    }
-
-    public void setMatriz(float matriz) {
-        this.matriz = matriz;
+            //coordenadas aleatórias do ponto
+            for(int j = 0; j < k; j++){
+                coordenadas[j] = random.nextDouble();
+            }
+            centro.setAtributos(coordenadas);
+            
+            //adicionando ao arraylist
+            centroide.add(i, centro);
+        }
     }
     
-    private double[] iniciaCentroide(double[] dados, int k) { 
-            Random random = new Random();
-            double [] centroides = null;
-            for (int i = 0; i < k; i++) {
-                centroides[i] = random.nextDouble();
-            }
-            return centroides;
+    //Calcula a distancia euclidiana entre dois pontos
+    public double calculaDistancia(Ponto cluster , Ponto ponto){
+        double distancia = 0;
+        for(int j = 0; j < atributos; j++){
+            distancia += Math.pow(Math.abs(ponto.getAtributos()[j] - cluster.getAtributos()[j]), 2);            
+        }     
+        return Math.sqrt(distancia);
     }
 
     
