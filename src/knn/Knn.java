@@ -17,11 +17,8 @@ public class Knn {
      * @param args the command line arguments
      */
     //Declaração dos 3
-    private Float distanciaDoisPontos(float[] Elementos1, float[] Elementos2) {
-    int XCoordenada = 0;
-    int YCoordenada = 1;
-    int ZCoordenada = 2;
-        int x1 =  Math.round(Elementos1[XCoordenada]);
+    /*private Float distanciaDoisPontos(float[] Elementos1, float[] Elementos2) {
+    int x1 =  Math.round(Elementos1[XCoordenada]);
     int y1 =  Math.round(Elementos1[YCoordenada]);
     int z1 =  Math.round(Elementos1[ZCoordenada]);
     int x2 =  Math.round(Elementos2[XCoordenada]);
@@ -52,9 +49,25 @@ public class Knn {
         return num - 1 ;
     }
     }
-    
+    */
     public static void main(String[] args) {
-        float[] El1 = 
+        Ponto el1 = new Ponto();
+        Ponto el2 = new Ponto();
+        Ponto el3 = new Ponto();
+        
+        double p1,p2,p3;
+        
+        Scanner leitor = new Scanner(System.in);
+        System.out.println("Insira o valor 1");
+        p1 =leitor.nextDouble();
+        System.out.println("Insira o valor 2");
+        p2 =leitor.nextDouble();
+        System.out.println("Insira o valor 3");
+        p3 =leitor.nextDouble();
+        
+        System.out.println("1:"+p1+"2:"+p2+"3:"+p3);
+       
+        
     }
         /*double x1,y1,x2,y2;
         double p1,p2, distancia;
