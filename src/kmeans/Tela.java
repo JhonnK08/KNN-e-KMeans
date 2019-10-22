@@ -87,35 +87,17 @@ public class Tela extends javax.swing.JFrame {
         System.out.println(quantLinha.length);
         String quantColuna[] = quantLinha[0].split(","); //Pega número de colunas
         System.out.println(quantColuna.length);
-        String papao = papo.replace(","," ");
-        papao = papao.replace("\n", " ");
-        String papao1[] = papao.split(" ");
-        System.out.println(papao);
-        String[][] texto = new String[quantLinha.length][quantColuna.length];
-        int j = 0;
-        int i = 0;
-        int k = 0;
-        for (int l = 0; l < papao1.length; l++) {
-            System.out.print(papao1[l]);
-        }
-        System.out.println("\n\n\n");
+        String papoTotal = papo.replace("\n", ",").trim(); //Todos os elementos separados por virgula
+        System.out.println(papoTotal);
+        String vetorTotal[] = papoTotal.split(","); //Insere todos os elementos em um vetor
         
-           for (i = 0; i < papo1.length; i++) {
-               for (j = 0; j < papo2[0].length(); j++) {
-                   texto[i][j] = papao1[k];
-                   k++;
-                   System.out.println(texto[i][j]);
-               }
-               k++;
-           } 
-           
-        System.out.println("\n\n Apresentacao da matriz \n");
-        for (int l = 0; l < papo1.length; l++) {
-            for (int m = 0; m < papo2[0].length(); m++) {
-                System.out.print(texto[l][m]); 
-            }
-            System.out.println("\n");
-        }
+        for (int i = 0; i < vetorTotal.length; i++) {
+          System.out.println(vetorTotal[i]);
+       }
+
+        String[][] texto = new String[quantLinha.length][quantColuna.length];
+        
+        
         
         //String [] texto = papo.nextLine().split(",");
         JOptionPane.showMessageDialog(rootPane, "Opa eae");
