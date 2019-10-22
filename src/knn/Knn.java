@@ -51,22 +51,18 @@ public class Knn {
     }
     */
     
-    /*
-    1,10,20,30,1
-    2,15,25,30,2
-    3,10,20,25,1
-    4,5,10,25,1
-    */
+    
     
     public static int k = 3;
     
     public static double distance(PontoKnn o, PontoKnn ref){
-        return (((o.x - ref.x) * (o.x - ref.x)) + ((o.y - ref.y) * (o.y - ref.y)) + ((o.z - ref.z) * (o.z - ref.z)));
+        return (((o.x - ref.x) * (o.x - ref.x)) + ((o.y - ref.y) * (o.y - ref.y)) + ((o.z - ref.z)*(o.z - ref.z)));
     }
     
     
     public static int kNN(PontoKnn o, ArrayList<PontoKnn> p){
         int[] indices = new int[k];
+        System.out.println("ind:"+indices);
         double[] mins = new double[k];
         for (int i=0; i<k; i++){
             mins[i] = Double.MAX_VALUE;
@@ -90,6 +86,7 @@ public class Knn {
             
             int a=0;
             int b=0;
+            
             for(int i=0; i<k; i++){
                 if(p.get(indices[i]).ponto == 0){
                     a++;
@@ -97,22 +94,43 @@ public class Knn {
                     b++;
                 }
             }
+            
+                    
             if(a>b){
-                return 0;
-            }else{
+                
                 return 1;
+                /*Amostra nova:
+                10,20,30
+                Classe: 1 (100%)
+                k (3) mais similares:
+                10,20,30,1 (100 %)
+                10,20,25,1 (90 %)
+                5,10,25,1 (50 %)*/
+            }else{
+                System.out.println("Amostra Nova : "+o.x+","+o.y+","+o.z);
+                System.out.println("Classe : "+o.ponto);
+                
+                return 2;
             }
     }
-   
+    /*
+    1,10,20,30,1
+    2,15,25,30,2
+    3,10,20,25,1
+    4,5,10,25,1
+    */
+   /*
     
+    */
     public static void main(String[] args) {
         ArrayList<PontoKnn> p = new ArrayList<PontoKnn>();
-        p.add(new PontoKnn(1,100,20,30,1));
-        p.add(new PontoKnn(2,15,25,30,2));
-        p.add(new PontoKnn(3,10,20,25,1));
-        p.add(new PontoKnn(4,5,10,25,1));
         
-        PontoKnn o = new PontoKnn(1,15,25,30,0);
+        p.add(new PontoKnn(10,20,30,1));
+	p.add(new PontoKnn(15,25,30,2));
+	p.add(new PontoKnn(10,20,25,1));
+	p.add(new PontoKnn(5,10,25,1));
+        
+        PontoKnn o = new PontoKnn(10,20,30);
         
         System.out.println(kNN(o, p));
     }
