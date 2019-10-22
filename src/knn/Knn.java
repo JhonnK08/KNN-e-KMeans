@@ -60,12 +60,12 @@ public class Knn {
     
     public static int k = 3;
     
-    public static double distance(Ponto o, Ponto ref){
+    public static double distance(PontoKnn o, PontoKnn ref){
         return (((o.x - ref.x) * (o.x - ref.x)) + ((o.y - ref.y) * (o.y - ref.y)) + ((o.z - ref.z) * (o.z - ref.z)));
     }
     
     
-    public static int kNN(Ponto o, ArrayList<Ponto> p){
+    public static int kNN(PontoKnn o, ArrayList<PontoKnn> p){
         int[] indices = new int[k];
         double[] mins = new double[k];
         for (int i=0; i<k; i++){
@@ -106,12 +106,13 @@ public class Knn {
    
     
     public static void main(String[] args) {
-        ArrayList<Ponto> p = new ArrayList<Ponto>();
-        p.add(new Ponto(1,100,20,30,1));
-        p.add(new Ponto(2,15,25,30,2));
-        p.add(new Ponto(3,10,20,25,1));
-        p.add(new Ponto(4,5,10,25,1));
-        Ponto o = new Ponto(1,15,25,30,0);
+        ArrayList<PontoKnn> p = new ArrayList<PontoKnn>();
+        p.add(new PontoKnn(1,100,20,30,1));
+        p.add(new PontoKnn(2,15,25,30,2));
+        p.add(new PontoKnn(3,10,20,25,1));
+        p.add(new PontoKnn(4,5,10,25,1));
+        
+        PontoKnn o = new PontoKnn(1,15,25,30,0);
         
         System.out.println(kNN(o, p));
     }

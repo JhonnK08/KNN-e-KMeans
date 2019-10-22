@@ -9,17 +9,17 @@ package knn;
  *
  * @author JVict
  */
-public class Ponto {
+public class PontoKnn {
     int id, x, y, z, ponto;
     
-    public Ponto(int id,int x, int y, int z){
+    public PontoKnn(int id,int x, int y, int z){
         this.id = id;
         this.x = x;
         this.y = y;
         this.z = z;
     }
     
-    public Ponto(int id,int x, int y, int z, int ponto){
+    public PontoKnn(int id,int x, int y, int z, int ponto){
         this.id = id;
         this.x = x;
         this.y = y;
