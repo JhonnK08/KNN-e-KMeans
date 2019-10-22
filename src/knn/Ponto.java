@@ -10,51 +10,20 @@ package knn;
  * @author JVict
  */
 public class Ponto {
+    int id, x, y, z, ponto;
     
-    private int id;
-    private double [] atributos;
-    private int classe;
-
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
+    public Ponto(int id,int x, int y, int z){
         this.id = id;
-    }
-
-    /**
-     * @return the atributos
-     */
-    public double[] getAtributos() {
-        return atributos;
-    }
-
-    /**
-     * @param atributos the atributos to set
-     */
-    public void setAtributos(double[] atributos, double[] atributos2, double[] atributos3) {
-        this.atributos = atributos;
-    }
-
-    /**
-     * @return the classe
-     */
-    public int getClasse() {
-        return classe;
-    }
-
-    /**
-     * @param classe the classe to set
-     */
-    public void setClasse(int classe) {
-        this.classe = classe;
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
     
+    public Ponto(int id,int x, int y, int z, int ponto){
+        this.id = id;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.ponto = ponto;
+    }
 }

@@ -5,7 +5,7 @@
  */
 package knn;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  *
@@ -50,24 +50,70 @@ public class Knn {
     }
     }
     */
+    
+    /*
+    1,10,20,30,1
+    2,15,25,30,2
+    3,10,20,25,1
+    4,5,10,25,1
+    */
+    
+    public static int k = 3;
+    
+    public static double distance(Ponto o, Ponto ref){
+        return (((o.x - ref.x) * (o.x - ref.x)) + ((o.y - ref.y) * (o.y - ref.y)) + ((o.z - ref.z) * (o.z - ref.z)));
+    }
+    
+    
+    public static int kNN(Ponto o, ArrayList<Ponto> p){
+        int[] indices = new int[k];
+        double[] mins = new double[k];
+        for (int i=0; i<k; i++){
+            mins[i] = Double.MAX_VALUE;
+        }
+        
+        for(int i=0; i<p.size(); i++){
+            double dist = distance(o, p.get(i));
+            double max = Double.MIN_VALUE;
+            int maxID = 0;
+            for(int j=0; j<k; j++){
+                if(max<mins[j]){
+                    max=mins[j];
+                    maxID = j;
+                }
+                if(mins[maxID] > dist) {
+                    mins[maxID] = dist;
+                    indices[maxID] = i;
+                }
+            }
+        }
+            
+            int a=0;
+            int b=0;
+            for(int i=0; i<k; i++){
+                if(p.get(indices[i]).ponto == 0){
+                    a++;
+                }else{
+                    b++;
+                }
+            }
+            if(a>b){
+                return 0;
+            }else{
+                return 1;
+            }
+    }
+   
+    
     public static void main(String[] args) {
-        Ponto el1 = new Ponto();
-        Ponto el2 = new Ponto();
-        Ponto el3 = new Ponto();
+        ArrayList<Ponto> p = new ArrayList<Ponto>();
+        p.add(new Ponto(1,100,20,30,1));
+        p.add(new Ponto(2,15,25,30,2));
+        p.add(new Ponto(3,10,20,25,1));
+        p.add(new Ponto(4,5,10,25,1));
+        Ponto o = new Ponto(1,15,25,30,0);
         
-        double p1,p2,p3;
-        
-        Scanner leitor = new Scanner(System.in);
-        System.out.println("Insira o valor 1");
-        p1 =leitor.nextDouble();
-        System.out.println("Insira o valor 2");
-        p2 =leitor.nextDouble();
-        System.out.println("Insira o valor 3");
-        p3 =leitor.nextDouble();
-        
-        System.out.println("1:"+p1+"2:"+p2+"3:"+p3);
-       
-        
+        System.out.println(kNN(o, p));
     }
         /*double x1,y1,x2,y2;
         double p1,p2, distancia;
