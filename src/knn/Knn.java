@@ -53,7 +53,7 @@ public class Knn {
     
     
     
-    public static int k = 3;
+    public static int k = 5;
     
     public static double distance(PontoKnn o, PontoKnn ref){
         return (((o.x - ref.x) * (o.x - ref.x)) + ((o.y - ref.y) * (o.y - ref.y)) + ((o.z - ref.z)*(o.z - ref.z)));
@@ -62,7 +62,6 @@ public class Knn {
     
     public static int kNN(PontoKnn o, ArrayList<PontoKnn> p){
         int[] indices = new int[k];
-        System.out.println("ind:"+indices);
         double[] mins = new double[k];
         for (int i=0; i<k; i++){
             mins[i] = Double.MAX_VALUE;
@@ -88,7 +87,7 @@ public class Knn {
             int b=0;
             
             for(int i=0; i<k; i++){
-                if(p.get(indices[i]).ponto == 0){
+                if(p.get(indices[i]).classe == 0){
                     a++;
                 }else{
                     b++;
@@ -99,6 +98,7 @@ public class Knn {
             if(a>b){
                 
                 return 1;
+                o.classe = (1)
                 /*Amostra nova:
                 10,20,30
                 Classe: 1 (100%)
@@ -108,7 +108,7 @@ public class Knn {
                 5,10,25,1 (50 %)*/
             }else{
                 System.out.println("Amostra Nova : "+o.x+","+o.y+","+o.z);
-                System.out.println("Classe : "+o.ponto);
+                System.out.println("Classe : "+o.classe);
                 
                 return 2;
             }

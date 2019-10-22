@@ -10,7 +10,7 @@ package knn;
  * @author JVict
  */
 public class PontoKnn {
-    int x, y, z, ponto;
+    int x, y, z, classe;
     
     public PontoKnn(int x,int y, int z){
         this.x = x;
@@ -18,10 +18,10 @@ public class PontoKnn {
         this.z = z;
     }
     
-    public PontoKnn(int x, int y,int z, int ponto){
+    public PontoKnn(int x, int y,int z, int classe){
         this.x = x;
         this.y = y;
         this.z = z;
-        this.ponto = ponto;
+        this.classe = classe;
     }
 }
