@@ -6,6 +6,7 @@
 package kmeans;
 
 import javax.swing.JOptionPane;
+import sun.security.util.Length;
 
 /**
  *
@@ -82,11 +83,38 @@ public class Tela extends javax.swing.JFrame {
         
 
         String papo = jTextAreaTexto.getText();
-        String [][] texto;
-        for (int j = 0; j < ; j++) {
-           for (int i = 0; i < ; i++) {
-            texto[j][i] = papo.split(",");
-            } 
+        String quantLinha[] = papo.split("\n"); // Pega número de linhas
+        System.out.println(quantLinha.length);
+        String quantColuna[] = quantLinha[0].split(","); //Pega número de colunas
+        System.out.println(quantColuna.length);
+        String papao = papo.replace(","," ");
+        papao = papao.replace("\n", " ");
+        String papao1[] = papao.split(" ");
+        System.out.println(papao);
+        String[][] texto = new String[quantLinha.length][quantColuna.length];
+        int j = 0;
+        int i = 0;
+        int k = 0;
+        for (int l = 0; l < papao1.length; l++) {
+            System.out.print(papao1[l]);
+        }
+        System.out.println("\n\n\n");
+        
+           for (i = 0; i < papo1.length; i++) {
+               for (j = 0; j < papo2[0].length(); j++) {
+                   texto[i][j] = papao1[k];
+                   k++;
+                   System.out.println(texto[i][j]);
+               }
+               k++;
+           } 
+           
+        System.out.println("\n\n Apresentacao da matriz \n");
+        for (int l = 0; l < papo1.length; l++) {
+            for (int m = 0; m < papo2[0].length(); m++) {
+                System.out.print(texto[l][m]); 
+            }
+            System.out.println("\n");
         }
         
         //String [] texto = papo.nextLine().split(",");
