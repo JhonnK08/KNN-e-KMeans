@@ -5,6 +5,9 @@
  */
 package kmeans;
 
+import java.awt.List;
+import java.util.Arrays;
+import java.util.Collections;
 import javax.swing.JOptionPane;
 import sun.security.util.Length;
 
@@ -90,17 +93,68 @@ public class Tela extends javax.swing.JFrame {
         String papoTotal = papo.replace("\n", ",").trim(); //Todos os elementos separados por virgula
         System.out.println(papoTotal);
         String vetorTotal[] = papoTotal.split(","); //Insere todos os elementos em um vetor
+        Double vetorDados[] = new Double[(quantColuna.length-1)*(quantLinha.length-1) ]; //Recebe apenas os dados (sem cabecalho e classe)
+        String[][] dados = new String[quantLinha.length][quantColuna.length]; //Matriz dos Dados
+        String cabecalho[] = quantLinha[0].split(",");//Cabecalho de atributos e classe  
+        double numMax;
+        double numMin;
+       
+        System.out.println("Vetor Total:");
+        //Preenchendo a matriz com tudo
+        int k = 0;
+        for (int i = 0; i <= quantColuna.length-1; i++) {
+            for (int j = 0; j <= quantLinha.length-1; j++) {
+                dados[i][j] = vetorTotal[k];
+                System.out.println(vetorTotal[k]);
+                k++;
+            }
+        }
+        System.out.println("Dados: " + dados.length);
+        System.out.println(vetorTotal.length);
+        System.out.println("Vetor Dados:");
         
-        for (int i = 0; i < vetorTotal.length; i++) {
-          System.out.println(vetorTotal[i]);
-       }
+        //Preenchendo vetor apenas com os dados
+        k = 0;
+        for (int i = 1; i <= quantColuna.length-1; i++) {
+            for (int j = 0; j <= quantLinha.length-2; j++) {
+                vetorDados[k] = Double.parseDouble(dados[i][j]);
+                System.out.println(dados[i][j]);
+                k++;
+            }
+        }
+        System.out.println(vetorDados.length);
+        
+        for (int i = 0; i <= quantColuna.length-1; i++) {
+            System.out.println("Coluna " + i);
+            for (int j = 0; j <= quantLinha.length-1; j++) {
+                System.out.println("Linha " + j + " : " + dados[i][j]);
+            }
+        }   
+        
+        //Cabecalho dos Dados
+        System.out.println("\n\nCabecalho de Dados");
+        for (int i = 0; i < cabecalho.length; i++) {
+            System.out.println(cabecalho[i]);
+        }
+        
+        //Adicionando Dados a Array Redundante
+        Double vetorDadosNormalizados[] = new Double[vetorDados.length];
+        for (int i = 0; i < vetorDados.length; i++) {
+            vetorDadosNormalizados[i] = vetorDados[i];
+        }
 
-        String[][] texto = new String[quantLinha.length][quantColuna.length];
+        //Encontrando os maiores e menores valores dos dados
+        Arrays.sort(vetorDadosNormalizados);
+        numMin = vetorDadosNormalizados[0];
+        numMax = vetorDadosNormalizados[vetorDadosNormalizados.length - 1];
+        System.out.println("Minimo: " + numMin);
+        System.out.println("Maximo: " + numMax);
+        for (int i = 0; i < vetorDados.length; i++) {
+            vetorDadosNormalizados[i] = (vetorDados[i] - numMin) / (numMax - numMin);
+            System.out.println(vetorDadosNormalizados[i]);
+        }
         
-        
-        
-        //String [] texto = papo.nextLine().split(",");
-        JOptionPane.showMessageDialog(rootPane, "Opa eae");
+        JOptionPane.showMessageDialog(rootPane, "Dados normalizados!");
         //System.out.println(papo);
     }//GEN-LAST:event_jButton1ActionPerformed
 

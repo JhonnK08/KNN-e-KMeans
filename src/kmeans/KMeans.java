@@ -31,20 +31,6 @@ public class KMeans {
         System.out.println("k = " + kmeans.getK());
         
         //Solicitando e formatando dados
-        dados = JOptionPane.showInputDialog("Informe os dados separados em vírgula: ");
-        System.out.println("Dados = " + dados);
-        String rdados = dados.replace(",", "");
-        System.out.println(rdados);
-        
-        int ndados[] = new int[rdados.length()];
-        
-        for(int i = 0;i < rdados.length(); i++){
-            char c = rdados.charAt(i);
-            ndados[i] = Integer.parseInt(String.valueOf(c));
-        }
-        //System.out.println(ndados.toString());
-        int ultimo=ndados.length;
-        System.out.println(ultimo);
 
         //Criacao da matriz de distancias de acordo com K
         
