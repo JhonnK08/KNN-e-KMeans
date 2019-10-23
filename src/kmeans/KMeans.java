@@ -1,13 +1,12 @@
 package kmeans;
 
-import java.io.File;
-import java.io.IOException;
-import static java.lang.Math.random;
+import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
-import java.util.Scanner;
-import java.util.Vector;
 import javax.swing.JOptionPane;
+import org.apache.commons.lang3.ArrayUtils;
 
 public class KMeans {
     private int k;
@@ -15,7 +14,8 @@ public class KMeans {
     private ArrayList<Ponto> pontos;
     private ArrayList<Ponto> centroides;
     //private double centroides;
-    private String quantdados;
+    private String[] quantdados;
+    private double[][] dados;
     
     public KMeans() {
     }
@@ -24,21 +24,26 @@ public class KMeans {
     
     public static void main(String[] args) {
         KMeans kmeans = new KMeans();
-        String dados;
-        
+        Tela tela = new Tela();
         //Solicitando ao usuário que informe K
         kmeans.setK(Integer.parseInt(JOptionPane.showInputDialog("Informe o k: ")));
         System.out.println("k = " + kmeans.getK());
+        String[] cabecalho = tela.getCabecalho();
+        kmeans.setAtributos(tela.getCabecalho().length - 1);
+        kmeans.setQuantdados(tela.getItens());
+        kmeans.setDados(tela.getDados());
         
         //Solicitando e formatando dados
-
-        //Criacao da matriz de distancias de acordo com K
+        tela.setVisible(true);
+        kmeans.populaPonto(kmeans.getPontos(), kmeans.getAtributos(), kmeans.getQuantdados().length, kmeans.getDados());
         
         //Criar pontos randomicos dentro da base de dados
-        
+        kmeans.iniciarCentroides(kmeans.getCentroides(), kmeans.getK(), kmeans.getAtributos());
         //Comparar todas as distancias
         
         //Atribuir ao cluster mais proximo
+        
+        //Criacao da matriz de distancias de acordo com K
         
         //Fazer a media de distancia entre os pontos
         
@@ -73,6 +78,20 @@ public class KMeans {
         }
     }
     
+    public void populaPonto(ArrayList <Ponto> pontos, int atributos, int itens, double[][] dados){
+        for (int i = 0; i < itens; i++) {
+            Ponto ponto = new Ponto();
+            double[] vetorDados = null;
+            for (int j = 0; j < atributos; j++) {
+                vetorDados[j] = dados[i][j];
+            }
+            ponto.setId(i);
+            ponto.setAtributos(vetorDados);
+            pontos.add(i, ponto);
+        }
+    
+    }
+    
     //Calcula a distancia euclidiana entre dois pontos
     public double calculaDistancia(Ponto cluster , Ponto ponto){
         double distancia = 0;
@@ -80,6 +99,19 @@ public class KMeans {
             distancia += Math.pow(Math.abs(ponto.getAtributos()[j] - cluster.getAtributos()[j]), 2);            
         }     
         return Math.sqrt(distancia);
+    }
+    
+    public void populaCluster(ArrayList <Ponto> pontos, ArrayList <Ponto> centroides) {
+        double[] distancias = null;
+        for (int i = 0; i < pontos.size(); i++) {
+            for (int j = 0; j < centroides.size(); j++) {
+                distancias[j] = calculaDistancia(centroides.get(i), pontos.get(i));
+            }
+            Double[] dArray = ArrayUtils.toObject(distancias);
+            List<Double> dList = Arrays.asList(dArray);
+            Double menor = Collections.min(dList);
+        }
+    
     }
 
     
@@ -96,4 +128,44 @@ public class KMeans {
 //        
 //        return seila;
 //    }
+
+    public int getAtributos() {
+        return atributos;
+    }
+
+    public void setAtributos(int atributos) {
+        this.atributos = atributos;
+    }
+
+    public ArrayList<Ponto> getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(ArrayList<Ponto> pontos) {
+        this.pontos = pontos;
+    }
+
+    public ArrayList<Ponto> getCentroides() {
+        return centroides;
+    }
+
+    public void setCentroides(ArrayList<Ponto> centroides) {
+        this.centroides = centroides;
+    }
+
+    public String[] getQuantdados() {
+        return quantdados;
+    }
+
+    public void setQuantdados(String[] quantdados) {
+        this.quantdados = quantdados;
+    }
+
+    public double[][] getDados() {
+        return dados;
+    }
+
+    public void setDados(double[][] dados) {
+        this.dados = dados;
+    }
 }

@@ -16,7 +16,12 @@ import sun.security.util.Length;
  * @author thiag
  */
 public class Tela extends javax.swing.JFrame {
-
+    
+    private double[][] dados;
+    private String[] cabecalho;
+    private String[] itens;
+    
+    
     /**
      * Creates new form Tela
      */
@@ -83,8 +88,6 @@ public class Tela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-
         String papo = jTextAreaTexto.getText();
         String quantLinha[] = papo.split("\n"); // Pega número de linhas
         System.out.println(quantLinha.length);
@@ -93,11 +96,12 @@ public class Tela extends javax.swing.JFrame {
         String papoTotal = papo.replace("\n", ",").trim(); //Todos os elementos separados por virgula
         System.out.println(papoTotal);
         String vetorTotal[] = papoTotal.split(","); //Insere todos os elementos em um vetor
-        Double vetorDados[] = new Double[(quantColuna.length-1)*(quantLinha.length-1) ]; //Recebe apenas os dados (sem cabecalho e classe)
-        String[][] dados = new String[quantLinha.length][quantColuna.length]; //Matriz dos Dados
+        double vetorDados[] = new double[(quantColuna.length-1)*(quantLinha.length-1) ]; //Recebe apenas os dados (sem cabecalho e classe)
+        String[][] dados = new String[quantLinha.length][quantColuna.length];//Matriz dos Dados
+        double[][] dadosNormalizados = null;
         String cabecalho[] = quantLinha[0].split(",");//Cabecalho de atributos e classe  
-        double numMax;
-        double numMin;
+        double numMax;//número Máximo dos dados
+        double numMin;//número Mínimo dos dados
        
         System.out.println("Vetor Total:");
         //Preenchendo a matriz com tudo
@@ -154,6 +158,17 @@ public class Tela extends javax.swing.JFrame {
             System.out.println(vetorDadosNormalizados[i]);
         }
         
+        
+        for (int i = 0; i <= quantColuna.length-1; i++) {
+            for (int j = 0; j <= quantLinha.length-1; j++) {
+                dadosNormalizados[i][j] = vetorDadosNormalizados[k];
+                k++;
+            }
+        }
+        
+        this.setDados(dadosNormalizados);
+        this.setCabecalho(cabecalho);
+        this.setItens(quantLinha);
         JOptionPane.showMessageDialog(rootPane, "Dados normalizados!");
         //System.out.println(papo);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -199,4 +214,28 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaTexto;
     // End of variables declaration//GEN-END:variables
+
+    public double[][] getDados() {
+        return dados;
+    }
+
+    public void setDados(double[][] dados) {
+        this.dados = dados;
+    }
+
+    public String[] getCabecalho() {
+        return cabecalho;
+    }
+
+    public void setCabecalho(String[] cabecalho) {
+        this.cabecalho = cabecalho;
+    }
+
+    public String[] getItens() {
+        return itens;
+    }
+
+    public void setItens(String[] itens) {
+        this.itens = itens;
+    }
 }
